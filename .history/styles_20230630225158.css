@@ -15,40 +15,36 @@ body {
     background: #000000;
 }
 
-@keyframes animateCircle {
-    0% {
-        clip-path: circle(30% at right);
-    }
-    50% {
-        clip-path: circle(50% at center);
-    }
-    100% {
-        clip-path: circle(30% at left);
-    }
+body {
+    overflow: hidden;
+    background: #000;
 }
 
 body::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(#f00, #f0f);
-    clip-path: circle(30% at right);
-    animation: animateCircle 5s linear infinite;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 2px;
+    background: #fff;
+    border-radius: 50%;
+    animation: twinkle 1s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 body::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(#2196f3, #e91e63);
-    clip-path: circle(20% at 10% 10%);
-    animation: animateCircle 5s linear infinite reverse;
+    /* This pseudo-element is not used in the starry sky effect, so it can be removed */
 }
 
 

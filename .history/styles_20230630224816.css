@@ -20,7 +20,7 @@ body {
         clip-path: circle(30% at right);
     }
     50% {
-        clip-path: circle(50% at center);
+        clip-path: polygon(50% at center);
     }
     100% {
         clip-path: circle(30% at left);

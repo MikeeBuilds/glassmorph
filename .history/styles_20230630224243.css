@@ -12,19 +12,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: #000000;
-}
-
-@keyframes animateCircle {
-    0% {
-        clip-path: circle(30% at right);
-    }
-    50% {
-        clip-path: circle(50% at center);
-    }
-    100% {
-        clip-path: circle(30% at left);
-    }
+    background: #161623;
 }
 
 body::before {
@@ -36,7 +24,6 @@ body::before {
     height: 100%;
     background: linear-gradient(#f00, #f0f);
     clip-path: circle(30% at right);
-    animation: animateCircle 5s linear infinite;
 }
 
 body::after {
@@ -48,9 +35,7 @@ body::after {
     height: 100%;
     background: linear-gradient(#2196f3, #e91e63);
     clip-path: circle(20% at 10% 10%);
-    animation: animateCircle 5s linear infinite reverse;
 }
-
 
 .container {
     position: relative;
