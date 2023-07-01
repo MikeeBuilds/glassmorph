@@ -1,0 +1,15 @@
+{
+  "name": "glassmorph",
+  "version": "1.0.0",
+  "description": "web3 glass wallet",
+  "main": "vanilla-tilt.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "algo hussle",
+  "license": "ISC",
+  "dependencies": {
+    "@alch/alchemy-web3": "^1.4.7",
+    "web3": "^4.0.2"
+  }
+}

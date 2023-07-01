@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real Glassmorphism</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header> <!-- Add this line -->
+      <button id="connect-wallet">Connect Wallet</button> <!-- Add this line -->
+    </header> <!-- Add this line -->
+    <div class="container">
+      <!-- Your card elements here -->
+    </div>
+    <script type="text/javascript" src="vanilla-tilt.js"></script>
+    <script type="text/javascript">
+      VanillaTilt.init(document.querySelectorAll(".card"), {
+        max: 25,
+        speed: 400,
+        glare: true,
+        "max-glare": 1,
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+    <script type="text/javascript">
+      document.getElementById('connect-wallet').addEventListener('click', function() {
+        if (window.ethereum) {
+          window.ethereum.enable().then(function(accounts) {
+            var account = accounts[0];
+            var web3 = new Web3(window.ethereum);
+            console.log('Connected account:', account);
+            // You can now use the web3 object to make calls to the Ethereum network
+          }).catch(function(error) {
+            console.error('Error connecting to wallet:', error);
+          });
+        } else {
+          alert('No Ethereum wallet detected. Please install MetaMask or another Ethereum wallet.');
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real Glassmorphism</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <button id="connect-wallet">Connect Wallet</button>
+      </header>
+      <div class="container">
+        <!-- Cards will be inserted here -->
+      </div>
+    </div>
+    <script type="text/javascript" src="vanilla-tilt.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+    <script type="text/javascript">
+      document.getElementById('connect-wallet').addEventListener('click', function() {
+        if (window.ethereum) {
+          window.ethereum.enable().then(function(accounts) {
+            var account = accounts[0];
+            var web3 = new Web3(window.ethereum);
+            console.log('Connected account:', account);
+
+            // Fetch NFTs and display them
+            fetchNFTs(account).then(function(nfts) {
+              var container = document.querySelector('.container');
+              nfts.forEach(function(nft) {
+                var card = createCardElement(nft);
+                container.appendChild(card);
+              });
+              VanillaTilt.init(document.querySelectorAll(".card"), {
+                max: 25,
+                speed: 400,
+                glare: true,
+                "max-glare": 1,
+              });
+            });
+          }).catch(function(error) {
+            console.error('Error connecting to wallet:', error);
+          });
+        } else {
+          alert('No Ethereum wallet detected. Please install MetaMask or another Ethereum wallet.');
+        }
+      });
+
+      function fetchNFTs(account) {
+        // This function should return a promise that resolves with an array of NFT data
+        // The data can be fetched from the Ethereum blockchain using the web3.js library
+        // For now, we'll just return some dummy data
+        return Promise.resolve([
+          { title: 'NFT 1', description: 'This is a cool NFT.' },
+          { title: 'NFT 2', description: 'This is another cool NFT.' },
+          // Add more dummy NFTs here
+        ]);
+      }
+
+      function createCardElement(nft) {
+        var card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="content">
+            <h2>${nft.title}</h2>
+            <p>${nft.description}</p>
+            <a href="#">Read More</a>
+          </div>
+        `;
+        return card;
+      }
+    </script>
+  </body>
+</html>
